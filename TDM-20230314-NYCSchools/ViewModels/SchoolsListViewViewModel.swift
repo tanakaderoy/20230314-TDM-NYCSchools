@@ -98,6 +98,7 @@ extension SchoolsListViewViewModel: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         isFiltered = false
         searchBar.text = ""
+        searchBar.searchTextField.resignFirstResponder()
         delegate?.reloadData()
     }
     
