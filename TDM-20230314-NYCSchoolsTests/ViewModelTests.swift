@@ -57,7 +57,7 @@ final class MockApiService: APIServiceProtocol {
         return .success([mockSchool])
     }
     
-    func getSATInfo(dbn: String) async -> Result<TDM_20230314_NYCSchools.SATResponseModel, Error> {
+    func getSATInfo(dbn: String) async -> Result<SATResponseModel, Error> {
         let mockSAT = SATResponseModel(dbn: "dbn", name: "School", numberOfTakers: "100", readingScore: "400", mathScore: "400", writingScore: "400")
         return .success(mockSAT)
     }
