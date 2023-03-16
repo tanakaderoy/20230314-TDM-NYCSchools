@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SchoolDetailViewModelDelegate: AnyObject {
-    func didGetSATInfo()
+    func didGetSATInfo(_ satTakersText:String,_ readingScoreText:String,_ writingScoreText:String,_ mathScoreText:String)
 }
 
 final class SchoolDetailViewModel {
@@ -92,7 +92,7 @@ final class SchoolDetailViewModel {
             writingScore = "N/A"
         }
         await MainActor.run {
-            delegate?.didGetSATInfo()
+            delegate?.didGetSATInfo(satTakersText,readingScoreText,writingScoreText,mathScoreText)
         }
     }
     

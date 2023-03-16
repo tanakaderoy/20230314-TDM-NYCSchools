@@ -186,11 +186,11 @@ class SchoolDetailViewController: UIViewController {
 
 
 extension SchoolDetailViewController: SchoolDetailViewModelDelegate {
-    func didGetSATInfo() {
-        satTakersLabel.text = viewModel.satTakersText
-        satMathLabel.text = viewModel.mathScoreText
-        satReadingLabel.text = viewModel.readingScoreText
-        satWritingLabel.text = viewModel.writingScoreText
+    func didGetSATInfo(_ satTakersText: String, _ readingScoreText: String, _ writingScoreText: String, _ mathScoreText: String) {
+        satTakersLabel.text = satTakersText
+        satMathLabel.text = mathScoreText
+        satReadingLabel.text = readingScoreText
+        satWritingLabel.text = writingScoreText
     }
     
     

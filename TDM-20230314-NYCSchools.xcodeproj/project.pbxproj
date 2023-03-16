@@ -10,7 +10,7 @@
 		BF0E5E7D29C2BC6E004E352D /* SchoolDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0E5E7C29C2BC6E004E352D /* SchoolDetailViewController.swift */; };
 		BF0E5E7F29C2C572004E352D /* SchoolDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0E5E7E29C2C572004E352D /* SchoolDetailViewModel.swift */; };
 		BF0E5E8129C2E087004E352D /* SATResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0E5E8029C2E087004E352D /* SATResponseModel.swift */; };
-		BF0E5EAC29C2EE70004E352D /* SchoolsListViewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0E5EAB29C2EE70004E352D /* SchoolsListViewViewModelTests.swift */; };
+		BF0E5EAC29C2EE70004E352D /* ViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0E5EAB29C2EE70004E352D /* ViewModelTests.swift */; };
 		BFA75E4A29C1722700FD8296 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA75E4929C1722700FD8296 /* AppDelegate.swift */; };
 		BFA75E4C29C1722700FD8296 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA75E4B29C1722700FD8296 /* SceneDelegate.swift */; };
 		BFA75E4E29C1722700FD8296 /* SchoolsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA75E4D29C1722700FD8296 /* SchoolsListViewController.swift */; };
@@ -41,7 +41,7 @@
 		BF0E5E7E29C2C572004E352D /* SchoolDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolDetailViewModel.swift; sourceTree = "<group>"; };
 		BF0E5E8029C2E087004E352D /* SATResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SATResponseModel.swift; sourceTree = "<group>"; };
 		BF0E5EA229C2EE57004E352D /* TDM-20230314-NYCSchoolsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TDM-20230314-NYCSchoolsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BF0E5EAB29C2EE70004E352D /* SchoolsListViewViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolsListViewViewModelTests.swift; sourceTree = "<group>"; };
+		BF0E5EAB29C2EE70004E352D /* ViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelTests.swift; sourceTree = "<group>"; };
 		BFA75E4629C1722600FD8296 /* TDM-20230314-NYCSchools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TDM-20230314-NYCSchools.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFA75E4929C1722700FD8296 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFA75E4B29C1722700FD8296 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 		BF0E5EA329C2EE57004E352D /* TDM-20230314-NYCSchoolsTests */ = {
 			isa = PBXGroup;
 			children = (
-				BF0E5EAB29C2EE70004E352D /* SchoolsListViewViewModelTests.swift */,
+				BF0E5EAB29C2EE70004E352D /* ViewModelTests.swift */,
 			);
 			path = "TDM-20230314-NYCSchoolsTests";
 			sourceTree = "<group>";
@@ -275,7 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF0E5EAC29C2EE70004E352D /* SchoolsListViewViewModelTests.swift in Sources */,
+				BF0E5EAC29C2EE70004E352D /* ViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
