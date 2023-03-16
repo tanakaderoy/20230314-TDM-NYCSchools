@@ -25,6 +25,17 @@ final class SchoolsListView: UIView {
         return spinner
     }()
     
+    private let searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.frame = CGRect(x: 0, y: 0, width: 200, height: 70)
+        searchBar.showsCancelButton = true
+        searchBar.searchBarStyle = .default
+        searchBar.placeholder = "Filter....."
+        searchBar.sizeToFit()
+        return searchBar
+    }()
+
+    
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.activateTamic()
@@ -37,6 +48,8 @@ final class SchoolsListView: UIView {
         self.viewModel = viewModel
         super.init(frame: .zero)
         self.activateTamic()
+        searchBar.delegate = viewModel
+        tableView.tableHeaderView = searchBar
         addSubviews(tableView, spinner)
         
         spinner.startAnimating()
@@ -95,4 +108,10 @@ extension SchoolsListView: SchoolsListViewViewModelDelegate {
     func didSelectSchool(_ school: SchoolsResponseModel) {
         delegate?.schoolsListView(self, didSelectSchool: school)
     }
+    
+    func reloadData() {
+        tableView.reloadData()
+    }
 }
+
+

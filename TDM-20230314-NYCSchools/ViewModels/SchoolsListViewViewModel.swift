@@ -10,6 +10,7 @@ import UIKit
 protocol SchoolsListViewViewModelDelegate: AnyObject {
     func didLoadSchools()
     func didSelectSchool(_ school: SchoolsResponseModel)
+    func reloadData()
 }
 
 final class SchoolsListViewViewModel: NSObject {
@@ -27,7 +28,15 @@ final class SchoolsListViewViewModel: NSObject {
         }
     }
     
+    var filteredSchools: [SchoolsResponseModel] = []{
+        didSet {
+            filteredCellViewModels = filteredSchools.map({SchoolsListCellViewModel(schoolName: $0.schoolName)})
+        }
+    }
+    var isFiltered = false
+    
     private var cellViewModels: [SchoolsListCellViewModel] = []
+    private var filteredCellViewModels: [SchoolsListCellViewModel] = []
     
     public func getSchools() async {
         let res = await apiService.getAllSchools()
@@ -57,14 +66,40 @@ extension SchoolsListViewViewModel: UITableViewDelegate {
 
 extension SchoolsListViewViewModel: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cellViewModels.count
+        return isFiltered ? filteredCellViewModels.count : cellViewModels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SchoolsListTableViewCell.identifier) as? SchoolsListTableViewCell else {fatalError("Unsupportedd Cell")}
-        cell.configure(with: cellViewModels[indexPath.row])
+        if isFiltered {
+            cell.configure(with: filteredCellViewModels[indexPath.row])
+        }else {
+            cell.configure(with: cellViewModels[indexPath.row])
+        }
         return cell
     }
     
     
 }
+
+extension SchoolsListViewViewModel: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if !searchText.isEmpty {
+            filteredSchools = schools.filter({$0.schoolName.lowercased().prefix(searchText.count) == searchText.lowercased()})
+            isFiltered = true
+        }
+        else{
+            isFiltered = false
+        }
+        delegate?.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        isFiltered = false
+        searchBar.text = ""
+        delegate?.reloadData()
+    }
+    
+}
+
