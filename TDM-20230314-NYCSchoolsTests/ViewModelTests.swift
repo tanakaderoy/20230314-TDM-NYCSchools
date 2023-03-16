@@ -15,7 +15,7 @@ final class SchoolsListViewViewModelTests: XCTestCase {
     var mockAPIService: MockApiService!
     var mockSchool: SchoolsResponseModel!
     var mockSchoolDetailViewModelDelegate: MockSchoolDetailViewModelDelegate!
-
+    
     override func setUp()  {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         mockAPIService = MockApiService()
@@ -25,7 +25,7 @@ final class SchoolsListViewViewModelTests: XCTestCase {
         mockSchoolDetailViewModelDelegate = MockSchoolDetailViewModelDelegate()
         schoolDetailViewModel.delegate = mockSchoolDetailViewModelDelegate
         
-   
+        
     }
     
     func testGetAllSchools() async {
@@ -34,25 +34,25 @@ final class SchoolsListViewViewModelTests: XCTestCase {
         XCTAssertEqual(schoolsListViewViewModel.schools.count, 1)
         
         XCTAssertEqual(schoolsListViewViewModel.schools[0].schoolName, mockSchool.schoolName)
-        
-
     }
     
     func testGetSATInfo() async {
+        XCTAssertNil(mockSchoolDetailViewModelDelegate.satInfo)
+        
         await schoolDetailViewModel.getSATInfo()
         
-        XCTAssertEqual(mockSchoolDetailViewModelDelegate.satInfoArray.count, 1)
+        XCTAssertNotNil(mockSchoolDetailViewModelDelegate.satInfo)
         
-        XCTAssertEqual(mockSchoolDetailViewModelDelegate.satInfoArray[0].satTakersText, "Num of SAT Takers: 100")
+        XCTAssertEqual(mockSchoolDetailViewModelDelegate.satInfo?.satTakersText, "Num of SAT Takers: 100")
     }
-
-
-
+    
+    
+    
 }
 
 
 final class MockApiService: APIServiceProtocol {
-    func getAllSchools() async -> Result<[TDM_20230314_NYCSchools.SchoolsResponseModel], Error> {
+    func getAllSchools() async -> Result<[SchoolsResponseModel], Error> {
         let mockSchool = SchoolsResponseModel(dbn: "dbn", schoolName: "School", overViewParagraph: "Hello", primaryAddressLine1: "Address", location: "Location", city: "City", zip: "ZIP", state: "NY")
         return .success([mockSchool])
     }
@@ -67,10 +67,17 @@ final class MockApiService: APIServiceProtocol {
 
 
 final class MockSchoolDetailViewModelDelegate: SchoolDetailViewModelDelegate {
-    var satInfoArray: [(satTakersText: String, readingScoreText: String, writingScoreText: String, mathScoreText: String)] = []
+    
+    struct SATInfoData {
+        var satTakersText: String
+        var readingScoreText: String
+        var writingScoreText: String
+        var mathScoreText: String
+    }
+    
+    var satInfo: SATInfoData? = nil
     func didGetSATInfo(_ satTakersText: String, _ readingScoreText: String, _ writingScoreText: String, _ mathScoreText: String) {
-        
-        satInfoArray.append((satTakersText,readingScoreText,writingScoreText,mathScoreText))
+        satInfo = .init(satTakersText: satTakersText, readingScoreText: readingScoreText, writingScoreText: writingScoreText, mathScoreText: mathScoreText)
         
     }
     
