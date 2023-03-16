@@ -9,4 +9,5 @@ import Foundation
 
 final class Constants {
     static let SCHOOLS_ENDPOINT = "https://data.cityofnewyork.us/resource/s3k6-pzi2.json"
+    static let SAT_ENDPOINT = "https://data.cityofnewyork.us/resource/f9bf-2cp4.json"
 }

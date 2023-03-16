@@ -27,11 +27,14 @@ class SchoolsListViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         self.title = "Schools"
-        
         view.addSubview(schoolsListView)
         schoolsListView.fitInParentLayoutGuide()
         schoolsListView.delegate = self
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        schoolsListView.deselectRow(animated)
     }
     
 }
@@ -40,7 +43,10 @@ class SchoolsListViewController: UIViewController {
 extension SchoolsListViewController: SchoolsListViewDelegate {
     func schoolsListView(_ schoolsListView: SchoolsListView, didSelectSchool school: SchoolsResponseModel) {
         //Navigate to School Detail View
-        print(school)
+        let viewModel = SchoolDetailViewModel(school: school)
+        let schoolDetailVC = SchoolDetailViewController(viewModel: viewModel)
+        navigationController?.pushViewController(schoolDetailVC, animated: true)
+        
     }
     
     

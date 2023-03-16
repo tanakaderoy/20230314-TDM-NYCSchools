@@ -15,7 +15,13 @@ protocol SchoolsListViewViewModelDelegate: AnyObject {
 final class SchoolsListViewViewModel: NSObject {
     public weak var delegate: SchoolsListViewViewModelDelegate?
     
-    private var schools:[SchoolsResponseModel] = [] {
+    private let apiService: APIServiceProtocol
+    
+    init(apiService: APIServiceProtocol = APIService.shared) {
+        self.apiService = apiService
+    }
+    
+    private(set) var schools:[SchoolsResponseModel] = [] {
         didSet {
             cellViewModels = schools.map({SchoolsListCellViewModel(schoolName: $0.schoolName)})
         }
@@ -24,7 +30,7 @@ final class SchoolsListViewViewModel: NSObject {
     private var cellViewModels: [SchoolsListCellViewModel] = []
     
     public func getSchools() async {
-        let res = await APIService.getAllSchools()
+        let res = await apiService.getAllSchools()
         switch res {
         case .success(let schools):
             self.schools = schools

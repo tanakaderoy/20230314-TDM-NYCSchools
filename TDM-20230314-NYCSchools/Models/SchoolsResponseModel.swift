@@ -12,6 +12,7 @@ struct SchoolsResponseModel: Codable {
     let schoolName: String
     let overViewParagraph: String
     let primaryAddressLine1: String
+    let location: String
     let city: String
     let zip: String
     let state: String
@@ -24,6 +25,7 @@ struct SchoolsResponseModel: Codable {
         case zip
         case city
         case dbn
+        case location
     }
     
     

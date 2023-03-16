@@ -63,6 +63,12 @@ final class SchoolsListView: UIView {
         spinner.centerInParent()
     }
     
+    public func deselectRow(_ animated: Bool) {
+        if let selectedIndexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: selectedIndexPath, animated: animated)
+        }
+    }
+    
 
     
     
