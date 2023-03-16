@@ -86,7 +86,7 @@ extension SchoolsListViewViewModel: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if !searchText.isEmpty {
-            filteredSchools = schools.filter({$0.schoolName.lowercased().prefix(searchText.count) == searchText.lowercased()})
+            filteredSchools = schools.filter({$0.schoolName.lowercased().contains(searchText.lowercased())})
             isFiltered = true
         }
         else{
